@@ -1,0 +1,26 @@
+{
+  "expo": {
+    "name": "Tally Mobile",
+    "slug": "tally-mobile",
+    "version": "0.1.0",
+    "platforms": ["ios", "android"],
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "scheme": "tally",
+    "userInterfaceStyle": "light",
+    "ios": {
+      "bundleIdentifier": "app.tally.mobile",
+      "supportsTablet": true
+    },
+    "android": {
+      "package": "app.tally.mobile",
+      "adaptiveIcon": {
+        "backgroundColor": "#1E2A3B",
+        "foregroundImage": "./assets/android-icon-foreground.png",
+        "backgroundImage": "./assets/android-icon-background.png",
+        "monochromeImage": "./assets/android-icon-monochrome.png"
+      },
+      "predictiveBackGestureEnabled": false
+    }
+  }
+}
