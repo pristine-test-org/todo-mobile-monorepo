@@ -1,14 +1,14 @@
 # Tally
 
-The Tally to-do apps: two web apps and a mobile app that share one list. All three read and write
-the same Supabase `todos` table, so a task added on the phone shows up on the web and the other way
-round. There is no sign-in: everyone sees and edits the same list.
+The Tally to-do apps: two web apps that share one list, and the start of a mobile app. Both web
+apps read and write the same Supabase `todos` table, so a task added in one shows up in the other.
+There is no sign-in: everyone sees and edits the same list.
 
 | App | Folder | What it is | Where |
 | --- | --- | --- | --- |
 | **Tally** | `apps/web` | The list on the web: warm paper, serif wordmark, green accent | https://todo-mobile-monorepo-web.vercel.app |
 | **Tally Admin** | `apps/admin` | Every item in one table with created dates; dark rail, teal accent | https://todo-mobile-monorepo-admin.vercel.app |
-| **Tally Mobile** | `apps/mobile` | Native iOS and Android app (Expo); navy header, coral accent | Run with `npx expo start` |
+| **Tally Mobile** | `apps/mobile` | Native iOS and Android app (Expo); one welcome screen so far | Run with `npx expo start` |
 
 Each app's `DESIGN.md` describes its palette, type and layout.
 
@@ -18,10 +18,8 @@ Each app's `DESIGN.md` describes its palette, type and layout.
 - **Web** (`web`, `admin`): Vite + React 19 + TypeScript, plain CSS per app. Each build is a static
   `dist/` folder.
 - **Mobile** (`mobile`): Expo SDK 57 (React Native 0.86) + TypeScript, iOS and Android only.
-- **Supabase** for storage: one `todos` table (`id`, `title`, `done`, `created_at`), used with
-  `@supabase/supabase-js` and the public publishable key. The mobile app adds
-  `react-native-url-polyfill` and `@react-native-async-storage/async-storage`, as Supabase's React
-  Native guide sets it up.
+- **Supabase** for storage: one `todos` table (`id`, `title`, `done`, `created_at`), used from the
+  browser with `@supabase/supabase-js` and the public publishable key.
 - **Vercel** hosts the two web apps as separate projects (root directory `apps/web` and
   `apps/admin`), with a preview deployment for every pull request.
 
@@ -46,12 +44,10 @@ For the mobile app, `npx expo-doctor` in `apps/mobile` checks the Expo setup. Na
 
 ## Supabase
 
-All three apps use the same project, `https://hszqtfynyogshhltamep.supabase.co`. The URL and the
+Both web apps use the same project, `https://hszqtfynyogshhltamep.supabase.co`. The URL and the
 publishable key are defaults in each app's `src/lib/supabase.ts`; both are public by design, and
-row level security decides what they may do. To point an app elsewhere, set
-`VITE_SUPABASE_URL` and `VITE_SUPABASE_PUBLISHABLE_KEY` for the web apps, or
-`EXPO_PUBLIC_SUPABASE_URL` and `EXPO_PUBLIC_SUPABASE_PUBLISHABLE_KEY` for mobile (see each app's
-`.env.example`).
+row level security decides what they may do. To point an app elsewhere, set `VITE_SUPABASE_URL`
+and `VITE_SUPABASE_PUBLISHABLE_KEY` (see `apps/<app>/.env.example`) and rebuild.
 
 The `todos` table already exists. For a fresh project, apply
 `supabase/migrations/20261007120000_todos.sql` (SQL Editor, or `npx supabase db push` after
