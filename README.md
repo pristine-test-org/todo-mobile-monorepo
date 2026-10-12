@@ -6,8 +6,8 @@ round. There is no sign-in: everyone sees and edits the same list.
 
 | App | Folder | What it is | Where |
 | --- | --- | --- | --- |
-| **Tally** | `apps/web` | The list on the web: warm paper, serif wordmark, green accent | _deploying_ |
-| **Tally Admin** | `apps/admin` | Every item in one table with created dates; dark rail, teal accent | _deploying_ |
+| **Tally** | `apps/web` | The list on the web: warm paper, serif wordmark, green accent | https://todo-mobile-monorepo-web.vercel.app |
+| **Tally Admin** | `apps/admin` | Every item in one table with created dates; dark rail, teal accent | https://todo-mobile-monorepo-admin.vercel.app |
 | **Tally Mobile** | `apps/mobile` | Native iOS and Android app (Expo); navy header, coral accent | Run with `npx expo start` |
 
 Each app's `DESIGN.md` describes its palette, type and layout.
